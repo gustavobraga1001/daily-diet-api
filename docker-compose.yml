@@ -1,0 +1,15 @@
+services:
+  db:
+    image: mysql:latest
+    restart: always
+    environment:
+      MYSQL_USER: 'admin'
+      MYSQL_PASSWORD: 'admin123'
+      MYSQL_DATABASE: 'flask-diet-api'
+      MYSQL_ROOT_PASSWORD: 'admin123'
+    ports:
+      - "3306:3306"
+    expose:
+      - '3306' # Exposes port 3306 on the container
+    volumes:
+      - C:/Users/Gustavo Braga/Documents/braga/rocketseat/python/BDS/mysql-diet:/var/lib/mysql
