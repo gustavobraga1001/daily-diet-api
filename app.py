@@ -47,5 +47,16 @@ def update_snack(snack_id):
     
     return jsonify({"message": "Refeição não encontrada"}), 404
 
+@app.route("/snack/<int:snack_id>", methods=["DELETE"])
+def delete_user(snack_id):
+    snack = Snack.query.get(snack_id)
+    
+    if snack :
+        db.session.delete(snack)
+        db.session.commit()
+        return jsonify({"message": f"Refeição {snack_id} deletada com sucesso!"})
+    
+    return jsonify({"message": "Refeição não encontrada"}), 404
+
 if __name__ == "__main__":
     app.run(debug=True)
