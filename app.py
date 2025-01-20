@@ -23,7 +23,8 @@ def create_snack():
     isInside = data.get('isInside')
     
     if name and description and date:
-        snack = Snack(name=name, description=description, date=date, isInside=isInside)
+        date_format = datetime.strptime(date, '%Y-%m-%d %H:%M:%S')
+        snack = Snack(name=name, description=description, datetime=date_format, isInside=isInside)
         db.session.add(snack)
         db.session.commit()
         return jsonify({"message": "Refeição cadastrada com sucesso"}), 201

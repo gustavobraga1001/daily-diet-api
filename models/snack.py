@@ -4,5 +4,5 @@ class Snack(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String(80), nullable=False)
     description = db.Column(db.String(80), nullable=False)
-    date = db.Column(db.Date, nullable=False)  # Removido parênteses desnecessários
-    isInside = db.Column(db.Boolean, nullable=False)  # Corrigido o tipo e nome da coluna
+    datetime = db.Column(db.DateTime, nullable=False)  # Alterado para aceitar data e hora
+    isInside = db.Column(db.Boolean, nullable=False)  # Nome e tipo ajustados
