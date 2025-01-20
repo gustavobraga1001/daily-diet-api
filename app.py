@@ -31,5 +31,21 @@ def create_snack():
     
     return jsonify({"message": "Dados inválidos"}), 400
 
+@app.route("/snack/<int:snack_id>", methods=["PUT"])
+def update_snack(snack_id):
+    data = request.json
+    snack = Snack.query.get(snack_id)
+
+    if snack:
+        snack.name = data.get("name")
+        snack.description = data.get("description")
+        snack.datetime = data.get("datetime")
+        snack.isInside = data.get("isInside")
+        db.session.commit()
+
+        return jsonify({"message": f"Refeição {snack_id} atualizada com sucesso!"}), 201
+    
+    return jsonify({"message": "Refeição não encontrada"}), 404
+
 if __name__ == "__main__":
     app.run(debug=True)
