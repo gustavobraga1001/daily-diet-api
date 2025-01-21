@@ -58,5 +58,22 @@ def delete_user(snack_id):
     
     return jsonify({"message": "Refeição não encontrada"}), 404
 
+@app.route("/snack/<int:snack_id>", methods=["GET"])
+def read_snack(snack_id):
+    snack = Snack.query.get(snack_id)
+    if snack:
+        return jsonify({"snack": snack.to_dict()})
+    
+    return jsonify({"message": "Refeição não encontrada"}), 404
+
+@app.route("/snack", methods=["GET"])
+def read_snacks():
+    snacks = Snack.query.all()
+    if snacks:
+        snacks_list = [snack.to_dict() for snack in snacks]
+        return jsonify({"snacks": snacks_list})
+    
+    return jsonify({"message": "Nenhuma refeição encontrada"}), 404
+
 if __name__ == "__main__":
     app.run(debug=True)
